@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-surface: #fcf8fb;
+    --color-on-surface: #1b1b1d;
+    --color-primary: #0071e3;
+    --color-secondary: #7b61ff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Noto Sans Tamil", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #fcf8fb;
+    color: #1b1b1d;
+    overflow-x: hidden;
+  }
+
+  /* Safe line height for Tamil fonts to prevent glyph clipping */
+  [lang="ta"], .font-tamil, :lang(ta) {
+    font-family: "Noto Sans Tamil", Inter, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Accessible focus rings */
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.25);
+  }
+}
+
+/* Apple Cupertino Modern Glassmorphism System per DESIGN.md */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid #e5e5ea;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04), 0px 1px 3px rgba(0, 0, 0, 0.02);
+  color: #1b1b1d;
+}
+
+.apple-glass-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #e5e5ea;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.04), 0px 12px 24px rgba(0, 0, 0, 0.02);
+  color: #1b1b1d;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.apple-glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.apple-glass-pill {
+  background: #f6f3f5;
+  border: 1px solid #e5e5ea;
+  color: #1b1b1d;
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(228, 226, 228, 0.8);
+}
+
+.glass-dark-panel {
+  background: rgba(28, 28, 30, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f5f7;
+}
+
+.glass-dark-pill {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5f5f7;
+}
+
+/* Audio Waveform Animations */
+.wave-bar {
+  transform-origin: bottom;
+  animation: wave-bounce 1.2s ease-in-out infinite;
+}
+.wave-bar:nth-child(2) { animation-delay: 0.12s; }
+.wave-bar:nth-child(3) { animation-delay: 0.28s; }
+.wave-bar:nth-child(4) { animation-delay: 0.19s; }
+.wave-bar:nth-child(5) { animation-delay: 0.35s; }
+.wave-bar:nth-child(6) { animation-delay: 0.08s; }
+.wave-bar:nth-child(7) { animation-delay: 0.22s; }
+.wave-bar:nth-child(8) { animation-delay: 0.41s; }
+
+@keyframes wave-bounce {
+  0%, 100% { height: 6px; }
+  50% { height: 26px; }
+}
+
+/* Custom Clean Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #dcd9dc;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c1c6d6;
+}

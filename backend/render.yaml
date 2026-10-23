@@ -1,0 +1,42 @@
+# Render Infrastructure Blueprint for MockMate AI
+services:
+  # FastAPI Backend Web Service
+  - type: web
+    name: mockmate-ai-backend
+    env: docker
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    plan: standard
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mockmate-postgres-db
+          property: connectionString
+      - key: ALLOWED_ORIGINS
+        value: https://your-mockmate-frontend.vercel.app,http://localhost:5173
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 1440
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: WHISPER_MODEL_SIZE
+        value: small
+      - key: WHISPER_DEVICE
+        value: cpu
+      - key: WHISPER_COMPUTE_TYPE
+        value: int8
+
+# Managed PostgreSQL Database
+databases:
+  - name: mockmate-postgres-db
+    databaseName: mockmate_db
+    user: mockmate_user
+    plan: free
